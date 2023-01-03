@@ -1,0 +1,16 @@
+.form_box {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_box > input {
+  margin-top: 5px;
+  width: 150px;
+  height: 20px;
+}
+
+.form_box > button {
+  margin-top: 5px;
+  width: 150px;
+  height: 20px;
+}
