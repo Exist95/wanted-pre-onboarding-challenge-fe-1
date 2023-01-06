@@ -29,15 +29,20 @@ const Login = () => {
             password: password,
           })
           .then((res) => {
-            const token = res.data.token;
-            localStorage.setItem("token", token);
+            let tooken = res.data.token;
+            const token = {
+              value: tooken,
+              expire: Date.now() + 1000,
+            };
+            const objToken = JSON.stringify(token);
+            localStorage.setItem("token", objToken);
             navi("/");
           });
       } catch (err) {
         console.error(err);
       }
     },
-    [email, password]
+    [email, password, navi]
   );
 
   const handleEmailChange = useCallback((e) => {
