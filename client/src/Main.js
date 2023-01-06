@@ -53,7 +53,11 @@ const Main = () => {
           headers: { Authorization: localStorage.getItem("token") },
         }
       )
-      .then((res) => console.log(res));
+      .then((res) => {
+        if (res.status === 200) {
+          window.location.reload();
+        }
+      });
   };
 
   const onTitle = (e) => {

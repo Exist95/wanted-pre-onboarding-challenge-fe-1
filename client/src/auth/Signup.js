@@ -30,9 +30,7 @@ const Signup = () => {
             }
           });
       } catch (err) {
-        console.error(err);
-        console.log("실패요");
-        console.log(email);
+        alert("이미 존재하는 아이디입니다!");
       }
     },
     [email, password, navi]
