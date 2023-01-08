@@ -3,21 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "./components/Card";
 
-// Todo 수정 버튼을 클릭하면 수정 모드를 활성화하고, 수정 내용을 제출하거나 취소할 수 있습니다.
-// Todo 삭제 버튼을 클릭하면 해당 Todo를 삭제할 수 있습니다.
-// 한 화면 내에서 Todo List와 개별 Todo의 상세를 확인할 수 있도록 해주세요.
-
-// 새로고침을 했을 때 현재 상태가 유지되어야 합니다.
-// 개별 Todo를 조회 순서에 따라 페이지 뒤로가기를 통하여 조회할 수 있도록 해주세요.
-// 한 페이지 내에서 새로고침 없이 데이터가 정합성을 갖추도록 구현해주세요
-
-// 수정되는 Todo의 내용이 목록에서도 실시간으로 반영되어야 합니다
-
 const Main = () => {
   const [login, setLogin] = useState(false);
   const [todo, setTodo] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [modi, setModi] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [changeTitle, setChangeTitle] = useState("");
+  const [changeContent, setChangeContent] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -31,7 +25,7 @@ const Main = () => {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setTodo(res.data.data);
+        setTodo(res.data.data).reverse();
       });
   }, []);
 
@@ -67,6 +61,19 @@ const Main = () => {
     setContent(e.target.value);
   };
 
+  const modiCancel = () => {
+    setModi(false);
+    setUpdate(false);
+  };
+
+  const onCTitle = (e) => {
+    setChangeTitle(e.target.value);
+  };
+
+  const onCContent = (e) => {
+    setChangeContent(e.target.value);
+  };
+
   return (
     <div>
       <section>
@@ -78,19 +85,46 @@ const Main = () => {
         <Link to="/">
           {login && <button onClick={handleLogout}>로그아웃</button>}
         </Link>
+        {(!modi && <div>Create 모드입니다.</div>) || <div>수정모드</div>}
       </section>
       <main>
         {login && (
           <div>
             <div>
-              <span>todolist</span>
-              <button
-                style={{ marginLeft: "100px", cursor: "pointer" }}
-                disabled={!(title && content)}
-                onClick={PlusTodo}
-              >
-                {"+"}
-              </button>
+              <span>To Do List</span>!
+              {!modi && (
+                <button
+                  style={{ marginLeft: "70px", cursor: "pointer" }}
+                  disabled={!(title && content)}
+                  onClick={PlusTodo}
+                >
+                  {"추가"}
+                </button>
+              )}
+              {!modi && (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "150px",
+                  }}
+                >
+                  <input
+                    placeholder={"title"}
+                    name="title"
+                    value={title}
+                    onChange={onTitle}
+                  ></input>
+                  <input
+                    placeholder={"content"}
+                    name="content"
+                    value={content}
+                    onChange={onContent}
+                  ></input>
+                </div>
+              )}
+            </div>
+            {update && (
               <div
                 style={{
                   display: "flex",
@@ -99,21 +133,36 @@ const Main = () => {
                 }}
               >
                 <input
-                  placeholder="title"
+                  placeholder={"Change title"}
                   name="title"
-                  value={title}
-                  onChange={onTitle}
+                  value={changeTitle}
+                  onChange={onCTitle}
                 ></input>
                 <input
-                  placeholder="content"
+                  placeholder={"Change content"}
                   name="content"
-                  value={content}
-                  onChange={onContent}
+                  value={changeContent}
+                  onChange={onCContent}
                 ></input>
               </div>
-            </div>
+            )}
             {todo.map((el, index) => (
-              <Card key={index} el={el} />
+              <Card
+                key={index}
+                el={el}
+                setModi={setModi}
+                modi={modi}
+                modiCancel={modiCancel}
+                setUpdate={setUpdate}
+                update={update}
+                setTodo={setTodo}
+                changeTitle={changeTitle}
+                setChangeTitle={setChangeTitle}
+                changeContent={changeContent}
+                setChangeContent={setChangeContent}
+                onCTitle={onCTitle}
+                onCContent={onCContent}
+              />
             ))}
           </div>
         )}
