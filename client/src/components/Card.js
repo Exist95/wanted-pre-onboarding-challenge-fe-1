@@ -6,13 +6,10 @@ const Card = ({
   el,
   setModi,
   modi,
-  update,
   setUpdate,
   modiCancel,
   changeTitle,
   changeContent,
-  onCTitle,
-  onCContent,
 }) => {
   const onDelete = () => {
     const id = el.id;
@@ -61,7 +58,6 @@ const Card = ({
         <div>
           <div>목록 : {el.title}</div>
           <div>상세 영역 : {el.content}</div>
-          <div>{el.id}</div>
         </div>
         <div>
           <button onClick={onDelete}>삭제</button>
