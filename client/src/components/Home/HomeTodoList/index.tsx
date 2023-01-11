@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
-import "./card.css";
+import "./style.ts";
 
-const Card = ({
+const HomeTodoList = ({
   el,
   setModi,
   modi,
@@ -86,4 +86,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default HomeTodoList;

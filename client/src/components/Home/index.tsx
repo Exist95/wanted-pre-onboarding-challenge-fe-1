@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "../Card";
+import HomeTodoList from "./HomeTodoList";
 
-const Main = () => {
+const Home = () => {
   const [login, setLogin] = useState(false);
   const [todo, setTodo] = useState([]);
   const [title, setTitle] = useState("");
@@ -147,7 +147,7 @@ const Main = () => {
               </div>
             )}
             {todo.map((el, index) => (
-              <Card
+              <HomeTodoList
                 key={index}
                 el={el}
                 setModi={setModi}
@@ -165,4 +165,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Home;
