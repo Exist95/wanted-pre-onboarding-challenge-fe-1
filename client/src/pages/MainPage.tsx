@@ -1,8 +1,14 @@
 import React from "react";
-import Main from "../Main";
+import Header from "../components/Common/Header";
+import Main from "../components/Home/Main";
 
 const MainPage = () => {
-  return <Main />;
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  );
 };
 
 export default MainPage;
