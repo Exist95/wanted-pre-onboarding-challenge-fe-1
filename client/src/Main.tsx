@@ -25,7 +25,7 @@ const Main = () => {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setTodo(res.data.data).reverse();
+        setTodo(res.data.data);
       });
   }, []);
 
@@ -154,14 +154,8 @@ const Main = () => {
                 modi={modi}
                 modiCancel={modiCancel}
                 setUpdate={setUpdate}
-                update={update}
-                setTodo={setTodo}
                 changeTitle={changeTitle}
-                setChangeTitle={setChangeTitle}
                 changeContent={changeContent}
-                setChangeContent={setChangeContent}
-                onCTitle={onCTitle}
-                onCContent={onCContent}
               />
             ))}
           </div>
