@@ -1,6 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { HomeTodoListContainer } from "./style";
+import {
+  HomeTodoListContainer,
+  TodoListHead,
+  TodoListImg,
+  TodoListWrap,
+} from "./style";
+import SnoopyImg from "../../../assets/snoopy.png";
 
 const HomeTodoList = (
   {
@@ -56,6 +62,12 @@ const HomeTodoList = (
 
   return (
     <HomeTodoListContainer>
+      <TodoListWrap>
+        <TodoListHead>
+          <div>To Do List</div>
+          <TodoListImg src={SnoopyImg} />
+        </TodoListHead>
+      </TodoListWrap>
       {/* <div>
         <div>
           <div>목록 : {el.title}</div>

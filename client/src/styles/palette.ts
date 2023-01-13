@@ -101,6 +101,7 @@ const yellow = {
   "700": "#fbc02d",
   "800": "#f9a825",
   "900": "#f57f17",
+  custom: "#F9DF9D",
 };
 
 const orange = {
