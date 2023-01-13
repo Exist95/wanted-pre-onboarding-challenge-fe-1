@@ -1,60 +1,62 @@
 import axios from "axios";
 import React from "react";
-import "./style.ts";
+import { HomeTodoListContainer } from "./style";
 
-const HomeTodoList = ({
-  el,
-  setModi,
-  modi,
-  setUpdate,
-  modiCancel,
-  changeTitle,
-  changeContent,
-}) => {
-  const onDelete = () => {
-    const id = el.id;
-    try {
-      axios
-        .delete(`http://localhost:8080/todos/${id}`, {
-          headers: { Authorization: localStorage.getItem("token") },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            window.location.reload();
-            alert("삭제되었습니다.");
-          }
-        });
-    } catch (error) {
-      alert("error");
-    }
-  };
+const HomeTodoList = (
+  {
+    // el,
+    // setModi,
+    // modi,
+    // setUpdate,
+    // modiCancel,
+    // changeTitle,
+    // changeContent,
+  }
+) => {
+  // const onDelete = () => {
+  //   const id = el.id;
+  //   try {
+  //     axios
+  //       .delete(`http://localhost:8080/todos/${id}`, {
+  //         headers: { Authorization: localStorage.getItem("token") },
+  //       })
+  //       .then((res) => {
+  //         if (res.status === 200) {
+  //           window.location.reload();
+  //           alert("삭제되었습니다.");
+  //         }
+  //       });
+  //   } catch (error) {
+  //     alert("error");
+  //   }
+  // };
 
-  const onUpdate = () => {
-    setModi(true);
-    setUpdate(true);
-  };
+  // const onUpdate = () => {
+  //   setModi(true);
+  //   setUpdate(true);
+  // };
 
-  const postData = () => {
-    const id = el.id;
-    axios
-      .put(
-        `http://localhost:8080/todos/${id}`,
-        {
-          title: changeTitle,
-          content: changeContent,
-        },
-        { headers: { Authorization: localStorage.getItem("token") } }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          window.location.reload();
-        }
-      });
-  };
+  // const postData = () => {
+  //   const id = el.id;
+  //   axios
+  //     .put(
+  //       `http://localhost:8080/todos/${id}`,
+  //       {
+  //         title: changeTitle,
+  //         content: changeContent,
+  //       },
+  //       { headers: { Authorization: localStorage.getItem("token") } }
+  //     )
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         window.location.reload();
+  //       }
+  //     });
+  // };
 
   return (
-    <>
-      <div className="card">
+    <HomeTodoListContainer>
+      {/* <div>
         <div>
           <div>목록 : {el.title}</div>
           <div>상세 영역 : {el.content}</div>
@@ -81,8 +83,8 @@ const HomeTodoList = ({
             </>
           )}
         </div>
-      </div>
-    </>
+      </div> */}
+    </HomeTodoListContainer>
   );
 };
 

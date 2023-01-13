@@ -1,31 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { MONTH, WEEKDAY } from "./dayList";
 import "./style";
-import { CalendarBox } from "./style";
+import { AuthBox, CalendarBox, DateBox, WeekBox } from "./style";
 
 let day = new Date();
-const MONTH = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-const WEEKDAY = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 let week = WEEKDAY[day.getDay()];
-let TODAYMONTH = MONTH[day.getMonth()];
+let todaymonth = MONTH[day.getMonth()];
 let date = day.getDate();
 
 const HomeCalendar = () => {
   return (
     <CalendarBox>
-      {week} {date} {TODAYMONTH}
+      <DateBox>
+        {date}{" "}
+        <WeekBox>
+          <div>{week} </div>
+          <div>{todaymonth}</div>
+        </WeekBox>
+      </DateBox>
+      <AuthBox>
+        <Link to="/login">{<button>로그인</button>}</Link>
+        <Link to="/signup">{<button>회원가입</button>}</Link>
+      </AuthBox>
     </CalendarBox>
   );
 };

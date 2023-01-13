@@ -80,13 +80,12 @@ const Home = () => {
     <HomeWrap>
       <HomeGrid>
         <HomeCalendar />
-        <div>
-          <Link to="/login">{!login && <button>로그인</button>}</Link>
-          <Link to="/signup">{!login && <button>회원가입</button>}</Link>
+        <HomeTodoList />
+        {/* <div>
           <Link to="/">
             {login && <button onClick={handleLogout}>로그아웃</button>}
           </Link>
-        </div>
+        </div> */}
         {/* <main>
           {login && (
             <div>
@@ -147,7 +146,7 @@ const Home = () => {
                 </div>
               )}
               {todo.map((el, index) => (
-                <HomeTodoList
+                
                   key={index}
                   el={el}
                   setModi={setModi}
